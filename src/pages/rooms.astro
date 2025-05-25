@@ -151,7 +151,7 @@ const hotelAmenities = [
 ];
 
 // Room rendering function
-type Room = {
+interface Room {
   name: string;
   description: string;
   price: string;
@@ -160,9 +160,9 @@ type Room = {
   bed: string;
   occupancy: string;
   features: string[];
-};
+}
 
-const RoomCard = ({ room }: { room: Room }): any => {
+const RoomCard = ({ room }: { room: Room }) => {
   return (
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <div class="relative">
