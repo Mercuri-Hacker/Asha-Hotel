@@ -1,0 +1,341 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Button from '../components/Button.astro';
+
+// Services data
+const weddingFeatures = [
+  "Spacious banquet halls with elegant décor",
+  "State-of-the-art lighting and sound systems",
+  "Customizable décor and theme arrangements",
+  "Professional wedding planning and coordination",
+  "Diverse catering menu options",
+  "Guest accommodation packages"
+];
+
+const corporateFeatures = [
+  "Professional meeting spaces with modern amenities",
+  "High-speed Wi-Fi and presentation equipment",
+  "Breakout rooms for small group discussions",
+  "Customized catering for coffee breaks and meals",
+  "Event coordination services",
+  "Technical support for all audio-visual needs"
+];
+
+const specialEvents = [
+  {
+    title: "Anniversary Celebrations",
+    description: "Celebrate your milestone anniversary in style with our specially designed packages that create intimate and memorable experiences.",
+    image: "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    title: "Birthday Parties",
+    description: "From children's themed parties to adult milestone celebrations, our versatile spaces adapt to create the perfect birthday atmosphere.",
+    image: "https://images.pexels.com/photos/1405528/pexels-photo-1405528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    title: "Social Gatherings",
+    description: "Host reunions, holiday parties, or casual get-togethers in our welcoming venue with customized services to match your event's style.",
+    image: "https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  }
+];
+
+// Banquet hall capacities
+const capacities = [
+  {
+    name: "Grand Ballroom",
+    reception: "Up to 500 guests",
+    banquet: "Up to 400 guests",
+    theater: "Up to 600 guests",
+    classroom: "Up to 300 guests",
+    size: "10,000 sq ft",
+    image: "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    name: "Crystal Hall",
+    reception: "Up to 250 guests",
+    banquet: "Up to 200 guests",
+    theater: "Up to 300 guests",
+    classroom: "Up to 150 guests",
+    size: "5,000 sq ft",
+    image: "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    name: "Garden Terrace",
+    reception: "Up to 150 guests",
+    banquet: "Up to 120 guests",
+    theater: "Up to 180 guests",
+    classroom: "Up to 90 guests",
+    size: "3,000 sq ft",
+    image: "https://images.pexels.com/photos/169193/pexels-photo-169193.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  }
+];
+
+// FAQ data
+const faqs = [
+  {
+    question: "How far in advance should I book my event?",
+    answer: "We recommend booking your event at least 6-12 months in advance, especially for weddings and large corporate events. This ensures you get your preferred date and venue. However, we can sometimes accommodate events with shorter notice depending on availability."
+  },
+  {
+    question: "Can you accommodate special dietary requirements?",
+    answer: "Yes, our experienced culinary team can accommodate various dietary requirements including vegetarian, vegan, gluten-free, and allergies. Please inform us of any special dietary needs during the planning process."
+  },
+  {
+    question: "Do you provide decoration services?",
+    answer: "Yes, we offer complete decoration services with various themes and customization options. Our event designers will work with you to create the perfect ambiance for your event. You're also welcome to bring in your own decorator if you prefer."
+  },
+  {
+    question: "Is there a minimum guest count requirement?",
+    answer: "Minimum guest counts vary depending on the venue and date. Our sales team will provide specific information based on your event details during the consultation process."
+  },
+  {
+    question: "What is included in your standard banquet packages?",
+    answer: "Our standard packages typically include venue rental, basic décor, tables, chairs, linens, tableware, catering services, wait staff, and basic audio-visual equipment. We offer various enhancement options to customize your package."
+  },
+  {
+    question: "Can we bring our own alcohol/beverages?",
+    answer: "This depends on the specific package and local regulations. Some packages allow outside beverages with a corkage fee, while others require using our beverage services. Please discuss your preferences with your event coordinator."
+  }
+];
+---
+
+<Layout 
+  title="Banquet Services" 
+  description="Premium banquet services for weddings, corporate events, and special celebrations. Customizable venues and packages for memorable events."
+>
+  <!-- Hero Section -->
+  <Hero
+    title="Premium Banquet Services"
+    subtitle="Elegant venues and exceptional service for weddings, corporate events, and special celebrations"
+    image="https://images.pexels.com/photos/587739/pexels-photo-587739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    height="h-[60vh] min-h-[400px]"
+    buttons={[
+      {
+        text: "Book a Consultation",
+        href: "/contact",
+        variant: "primary"
+      }
+    ]}
+  />
+  
+  <!-- Wedding Services Section -->
+  <section id="weddings" class="py-20 bg-cream">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl text-secondary mb-6">Wedding Services</h2>
+          <p class="text-gray mb-6 leading-relaxed">
+            Transform your dream wedding into reality at AshaBanquetHotel. Our spacious banquet halls feature elegant décor, state-of-the-art lighting, and professional sound systems to create the perfect ambiance for your special day.
+          </p>
+          <p class="text-gray mb-8 leading-relaxed">
+            Our experienced wedding planners will work closely with you to ensure every detail is perfect, from the ceremony to the reception. We offer comprehensive packages that can be customized to match your vision and budget.
+          </p>
+          
+          <h3 class="font-display text-xl text-secondary mb-4">Features & Services:</h3>
+          <ul class="space-y-2 mb-8">
+            {weddingFeatures.map(feature => (
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          
+          <Button href="/booking#banquet" variant="primary">
+            Plan Your Wedding
+          </Button>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <img
+            src="https://images.pexels.com/photos/1456613/pexels-photo-1456613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Wedding Ceremony"
+            class="w-full h-auto object-cover rounded-lg shadow-md"
+          />
+          <img
+            src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Wedding Reception"
+            class="w-full h-auto object-cover rounded-lg shadow-md mt-8"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Corporate Events Section -->
+  <section id="corporate" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="grid grid-cols-2 gap-4">
+            <img
+              src="https://images.pexels.com/photos/2566581/pexels-photo-2566581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="Corporate Meeting"
+              class="w-full h-auto object-cover rounded-lg shadow-md mt-8"
+            />
+            <img
+              src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="Business Conference"
+              class="w-full h-auto object-cover rounded-lg shadow-md"
+            />
+          </div>
+        </div>
+        
+        <div class="order-1 lg:order-2">
+          <h2 class="font-display text-3xl md:text-4xl text-secondary mb-6">Corporate Events</h2>
+          <p class="text-gray mb-6 leading-relaxed">
+            Host successful business meetings, conferences, seminars, and corporate celebrations in our professional, fully-equipped venues. Our corporate event spaces are designed to impress with modern amenities and flexible configurations.
+          </p>
+          <p class="text-gray mb-8 leading-relaxed">
+            From small board meetings to large conferences, we provide the perfect setting for productive and memorable corporate events. Our dedicated team will handle all the details, allowing you to focus on your business objectives.
+          </p>
+          
+          <h3 class="font-display text-xl text-secondary mb-4">Features & Services:</h3>
+          <ul class="space-y-2 mb-8">
+            {corporateFeatures.map(feature => (
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          
+          <Button href="/booking#banquet" variant="primary">
+            Plan Your Corporate Event
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Special Celebrations Section -->
+  <section id="celebrations" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Special Celebrations"
+        subtitle="Create memorable experiences for all of life's special moments"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {specialEvents.map(event => (
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img
+              src={event.image}
+              alt={event.title}
+              class="w-full h-56 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="font-display text-xl text-secondary mb-3">{event.title}</h3>
+              <p class="text-gray mb-6">{event.description}</p>
+              <a href="/booking#banquet" class="font-accent text-primary hover:text-primary-dark inline-flex items-center transition-colors">
+                Learn More
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Banquet Halls Section -->
+  <section class="py-20 bg-cream">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Our Banquet Halls"
+        subtitle="Elegant venues for events of all sizes"
+      />
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {capacities.map(hall => (
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img
+              src={hall.image}
+              alt={hall.name}
+              class="w-full h-56 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="font-display text-xl text-secondary mb-3">{hall.name}</h3>
+              <p class="text-gray-500 text-sm mb-4">Size: {hall.size}</p>
+              
+              <div class="space-y-2 mb-6">
+                <div class="flex justify-between">
+                  <span class="text-sm">Reception Style:</span>
+                  <span class="text-sm font-medium">{hall.reception}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm">Banquet Style:</span>
+                  <span class="text-sm font-medium">{hall.banquet}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm">Theater Style:</span>
+                  <span class="text-sm font-medium">{hall.theater}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm">Classroom Style:</span>
+                  <span class="text-sm font-medium">{hall.classroom}</span>
+                </div>
+              </div>
+              
+              <a href="/gallery" class="font-accent text-primary hover:text-primary-dark inline-flex items-center transition-colors">
+                View Gallery
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQs Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Frequently Asked Questions"
+        subtitle="Find answers to common questions about our banquet services"
+      />
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="space-y-6">
+          {faqs.map((faq, index) => (
+            <div class="bg-gray-50 rounded-lg p-6">
+              <h3 class="font-display text-lg text-secondary mb-3">
+                {faq.question}
+              </h3>
+              <p class="text-gray">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-20 bg-secondary">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-display text-3xl md:text-4xl text-white mb-6">Ready to Plan Your Event?</h2>
+      <p class="text-white text-lg max-w-3xl mx-auto mb-10">
+        Contact us today to schedule a consultation and learn how we can make your event extraordinary.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/booking#banquet" variant="primary" size="lg">
+          Book a Venue
+        </Button>
+        <Button href="/contact" variant="outline" size="lg">
+          Contact Us
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,348 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import RoomCard from '../components/RoomCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import Button from '../components/Button.astro';
+
+// Services data
+const services = [
+  {
+    title: "Wedding Services",
+    description: "Transform your dream wedding into reality with our elegant venues, customizable décor, and professional planning services.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+    </svg>`,
+    link: "/banquet#weddings"
+  },
+  {
+    title: "Corporate Events",
+    description: "Host successful business meetings, conferences, and corporate celebrations in our professional, fully-equipped venues.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>`,
+    link: "/banquet#corporate"
+  },
+  {
+    title: "Premium Accommodation",
+    description: "Relax in comfort with our range of well-appointed rooms featuring modern amenities and exceptional service.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+    </svg>`,
+    link: "/rooms"
+  },
+  {
+    title: "Special Celebrations",
+    description: "Create memorable experiences for anniversaries, birthdays, and other milestone events with our customized packages.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+    </svg>`,
+    link: "/banquet#celebrations"
+  }
+];
+
+// Featured rooms data
+const featuredRooms = [
+  {
+    name: "Premium Suite",
+    description: "Experience luxury and comfort in our spacious premium suite with elegant furnishings and panoramic views.",
+    price: "From $199/night",
+    image: "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    features: [
+      "King-size bed with premium bedding",
+      "Spacious living area",
+      "Modern bathroom with luxury amenities",
+      "City/garden views",
+      "24/7 room service"
+    ],
+    link: "/rooms#premium"
+  },
+  {
+    name: "Deluxe Guest Room",
+    description: "Comfortable and well-appointed room offering the perfect balance of style, convenience, and value.",
+    price: "From $129/night",
+    image: "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    features: [
+      "Queen-size bed with quality linens",
+      "Work desk and seating area",
+      "Modern bathroom facilities",
+      "Flat-screen TV",
+      "High-speed Wi-Fi"
+    ],
+    link: "/rooms#guest"
+  },
+  {
+    name: "Standard Room",
+    description: "Clean, comfortable accommodations at budget-friendly rates without compromising on essential amenities.",
+    price: "From $89/night",
+    image: "https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    features: [
+      "Double or twin beds",
+      "Basic bathroom amenities",
+      "Air conditioning",
+      "Television",
+      "Daily housekeeping"
+    ],
+    link: "/rooms#standard"
+  }
+];
+
+// Testimonials data
+const testimonials = [
+  {
+    name: "Emily & David",
+    role: "Wedding Couple",
+    image: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    content: "Our wedding at AshaBanquetHotel was absolutely perfect! The staff went above and beyond to make our special day truly magical. The venue was stunning, the food was exceptional, and every detail was handled with care.",
+    rating: 5
+  },
+  {
+    name: "John Williams",
+    role: "Corporate Client",
+    image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    content: "We've hosted several corporate events at AshaBanquetHotel and have always been impressed with the professional service and attention to detail. The facilities are excellent and the staff is always accommodating.",
+    rating: 5
+  },
+  {
+    name: "Sarah Thompson",
+    role: "Hotel Guest",
+    image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    content: "My stay at AshaBanquetHotel was wonderful. The room was spacious and comfortable, the staff was friendly and helpful, and the location was perfect. I would definitely recommend this hotel to anyone visiting the area.",
+    rating: 4
+  }
+];
+---
+
+<Layout title="Premier Banquet Hall & Hotel">
+  <!-- Hero Section -->
+  <Hero
+    title="Premier Banquet Hall & Hotel"
+    subtitle="Create Unforgettable Memories with Luxury Banquet Services & Comfortable Accommodation"
+    image="https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    buttons={[
+      {
+        text: "Book Banquet",
+        href: "/booking#banquet",
+        variant: "primary"
+      },
+      {
+        text: "View Rooms",
+        href: "/rooms",
+        variant: "outline"
+      }
+    ]}
+  />
+  
+  <!-- Welcome Section -->
+  <section class="py-20 bg-cream">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl text-secondary mb-6">Welcome to AshaBanquetHotel</h2>
+          <p class="text-gray mb-6 leading-relaxed">
+            At AshaBanquetHotel, every celebration becomes a cherished memory. Whether you're planning an elegant wedding, milestone anniversary, joyful birthday celebration, or corporate event, our premium banquet facilities and comfortable accommodation ensure your special day is perfect in every detail.
+          </p>
+          <p class="text-gray mb-8 leading-relaxed">
+            Our state-of-the-art facilities, experienced staff, and commitment to excellence have made us the preferred choice for families and businesses seeking memorable experiences. From intimate gatherings to grand celebrations, we customize our services to match your vision and budget.
+          </p>
+          <Button href="/about" variant="primary">
+            Discover Our Story
+          </Button>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-4">
+            <img
+              src="https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="Elegant Banquet Hall"
+              class="w-full h-40 md:h-64 object-cover rounded-lg shadow-md"
+            />
+            <img
+              src="https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="Comfortable Hotel Room"
+              class="w-full h-40 md:h-48 object-cover rounded-lg shadow-md"
+            />
+          </div>
+          <div class="space-y-4 mt-8">
+            <img
+              src="https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="Wedding Celebration"
+              class="w-full h-40 md:h-48 object-cover rounded-lg shadow-md"
+            />
+            <img
+              src="https://images.pexels.com/photos/296883/pexels-photo-296883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="Luxury Accommodations"
+              class="w-full h-40 md:h-64 object-cover rounded-lg shadow-md"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Our Services"
+        subtitle="Exceptional banquet and accommodation services tailored to meet your needs"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {services.map(service => (
+          <ServiceCard
+            title={service.title}
+            description={service.description}
+            icon={service.icon}
+            link={service.link}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Rooms Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Luxurious Accommodation"
+        subtitle="Comfortable rooms and suites for a relaxing stay"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {featuredRooms.map(room => (
+          <RoomCard
+            name={room.name}
+            description={room.description}
+            price={room.price}
+            image={room.image}
+            features={room.features}
+            link={room.link}
+          />
+        ))}
+      </div>
+      
+      <div class="text-center mt-12">
+        <Button href="/rooms" variant="secondary">
+          View All Rooms
+        </Button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials Section -->
+  <section class="py-20 bg-cream">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="What Our Guests Say"
+        subtitle="Hear from those who have experienced our hospitality"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {testimonials.map(testimonial => (
+          <TestimonialCard
+            name={testimonial.name}
+            role={testimonial.role}
+            image={testimonial.image}
+            content={testimonial.content}
+            rating={testimonial.rating}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-20 bg-secondary">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-display text-3xl md:text-4xl text-white mb-6">Ready to Create Unforgettable Memories?</h2>
+      <p class="text-white text-lg max-w-3xl mx-auto mb-10">
+        Book your special event or comfortable stay with us today and experience exceptional service and amenities.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/booking" variant="primary" size="lg">
+          Book Now
+        </Button>
+        <Button href="/contact" variant="outline" size="lg">
+          Contact Us
+        </Button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Location Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Our Location"
+        subtitle="Conveniently located in the heart of the city"
+      />
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="bg-gray-200 rounded-lg overflow-hidden h-80">
+          <!-- Placeholder for a map - in a real site, you'd integrate Google Maps here -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343005!2d-74.00425882427156!3d40.71127937132799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a1a6d5f34eb%3A0x58728f3077ff38ed!2sNew%20York%2C%20NY%2010007%2C%20USA!5e0!3m2!1sen!2sus!4v1683918517053!5m2!1sen!2sus"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        
+        <div class="flex flex-col justify-center">
+          <h3 class="font-display text-2xl text-secondary mb-6">Find Us</h3>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-3 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <h4 class="font-accent font-medium text-gray-dark">Address</h4>
+                <p class="text-gray">123 Luxury Avenue, City Center<br>State, Country - 12345</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-3 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              <div>
+                <h4 class="font-accent font-medium text-gray-dark">Phone</h4>
+                <p class="text-gray">+1 (123) 456-7890</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-3 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              <div>
+                <h4 class="font-accent font-medium text-gray-dark">Email</h4>
+                <p class="text-gray">info@ashabanquethotel.com</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary mr-3 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <h4 class="font-accent font-medium text-gray-dark">Hours</h4>
+                <p class="text-gray">
+                  Reception: 24/7<br>
+                  Banquet Inquiries: Mon-Sat, 9 AM - 6 PM
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

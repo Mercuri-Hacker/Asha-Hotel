@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+// Gallery categories and images
+const categories = [
+  {
+    id: "banquet",
+    name: "Banquet Halls",
+    images: [
+      {
+        src: "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Grand Ballroom",
+        caption: "Grand Ballroom setup for a wedding reception"
+      },
+      {
+        src: "https://images.pexels.com/photos/1579253/pexels-photo-1579253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Crystal Hall",
+        caption: "Crystal Hall with elegant table settings"
+      },
+      {
+        src: "https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Garden Terrace",
+        caption: "Garden Terrace prepared for an outdoor event"
+      },
+      {
+        src: "https://images.pexels.com/photos/169193/pexels-photo-169193.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Conference Room",
+        caption: "Conference Room setup for a business meeting"
+      }
+    ]
+  },
+  {
+    id: "rooms",
+    name: "Accommodation",
+    images: [
+      {
+        src: "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Premium King Suite",
+        caption: "Premium King Suite with elegant furnishings"
+      },
+      {
+        src: "https://images.pexels.com/photos/279746/pexels-photo-279746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Premium Double Suite",
+        caption: "Premium Double Suite with two queen beds"
+      },
+      {
+        src: "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Deluxe King Room",
+        caption: "Deluxe King Room with modern amenities"
+      },
+      {
+        src: "https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Standard Room",
+        caption: "Standard Room offering comfort and value"
+      }
+    ]
+  },
+  {
+    id: "events",
+    name: "Events & Celebrations",
+    images: [
+      {
+        src: "https://images.pexels.com/photos/1456613/pexels-photo-1456613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Wedding Ceremony",
+        caption: "Elegant wedding ceremony setup"
+      },
+      {
+        src: "https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Birthday Celebration",
+        caption: "Festive birthday party arrangement"
+      },
+      {
+        src: "https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Corporate Event",
+        caption: "Professional corporate event setup"
+      },
+      {
+        src: "https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Gala Dinner",
+        caption: "Elegant gala dinner arrangement"
+      }
+    ]
+  },
+  {
+    id: "dining",
+    name: "Dining & Cuisine",
+    images: [
+      {
+        src: "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Restaurant Interior",
+        caption: "Elegant restaurant dining area"
+      },
+      {
+        src: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Gourmet Cuisine",
+        caption: "Exquisite gourmet dish presentation"
+      },
+      {
+        src: "https://images.pexels.com/photos/541216/pexels-photo-541216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Buffet Setup",
+        caption: "Extensive buffet spread for events"
+      },
+      {
+        src: "https://images.pexels.com/photos/5379707/pexels-photo-5379707.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        alt: "Dessert Selection",
+        caption: "Delicious dessert selection"
+      }
+    ]
+  }
+];
+---
+
+<Layout 
+  title="Gallery" 
+  description="Explore our gallery of banquet halls, hotel rooms, events, and dining facilities at AshaBanquetHotel."
+>
+  <!-- Hero Section -->
+  <Hero
+    title="Gallery"
+    subtitle="Explore our elegant venues, comfortable accommodations, and memorable events"
+    image="https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    height="h-[50vh] min-h-[400px]"
+  />
+  
+  <!-- Gallery Categories -->
+  <section class="py-8 bg-cream sticky top-0 z-30">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-center gap-4">
+        {categories.map(category => (
+          <a 
+            href={`#${category.id}`} 
+            class="font-accent text-secondary hover:text-primary px-4 py-2 transition-colors"
+          >
+            {category.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Gallery Sections -->
+  {categories.map(category => (
+    <section id={category.id} class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <SectionHeading
+          title={category.name}
+          subtitle={`Explore our ${category.name.toLowerCase()} through these stunning images`}
+        />
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {category.images.map(image => (
+            <div class="bg-white rounded-lg shadow-md overflow-hidden group">
+              <div class="relative overflow-hidden">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
+                  <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4">
+                <p class="text-gray text-sm">{image.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+  
+  <!-- CTA Section -->
+  <section class="py-20 bg-secondary">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-display text-3xl md:text-4xl text-white mb-6">Experience Our Facilities in Person</h2>
+      <p class="text-white text-lg max-w-3xl mx-auto mb-10">
+        Schedule a tour to see our beautiful banquet halls and comfortable accommodations firsthand.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a 
+          href="/contact" 
+          class="bg-primary hover:bg-primary-dark text-white font-accent font-medium text-sm py-3 px-8 rounded transition-colors duration-300"
+        >
+          Schedule a Tour
+        </a>
+        <a 
+          href="/booking" 
+          class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-secondary font-accent font-medium text-sm py-3 px-8 rounded transition-colors duration-300"
+        >
+          Book Now
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Light Gallery Script -->
+  <script>
+    // In a real implementation, you'd use a library like lightGallery or PhotoSwipe
+    // This is a simple placeholder for the gallery functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const galleryItems = document.querySelectorAll('.grid > div');
+      
+      galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const imgSrc = item.querySelector('img').src;
+          const caption = item.querySelector('p').textContent;
+          
+          // In a real implementation, this would open a lightbox
+          console.log(`Opening gallery with image: ${imgSrc} - ${caption}`);
+        });
+      });
+    });
+  </script>
+</Layout>

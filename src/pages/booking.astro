@@ -1,0 +1,548 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+---
+
+<Layout 
+  title="Online Booking" 
+  description="Book banquet halls and hotel rooms online at AshaBanquetHotel. Instant confirmation and special online rates available."
+>
+  <!-- Hero Section -->
+  <Hero
+    title="Online Booking"
+    subtitle="Reserve banquet halls and hotel rooms with instant confirmation"
+    image="https://images.pexels.com/photos/3760529/pexels-photo-3760529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    height="h-[50vh] min-h-[400px]"
+  />
+  
+  <!-- Booking Tabs -->
+  <section class="py-8 bg-cream sticky top-0 z-30">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-center gap-4" id="booking-tabs">
+        <a 
+          href="#rooms" 
+          class="font-accent text-secondary hover:text-primary px-6 py-2 border-b-2 border-transparent hover:border-primary transition-colors"
+          data-tab="rooms"
+        >
+          Room Booking
+        </a>
+        <a 
+          href="#banquet" 
+          class="font-accent text-secondary hover:text-primary px-6 py-2 border-b-2 border-transparent hover:border-primary transition-colors"
+          data-tab="banquet"
+        >
+          Banquet Booking
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Room Booking Section -->
+  <section id="rooms" class="py-16 bg-white booking-section">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Room Reservation"
+        subtitle="Book your comfortable stay with us"
+      />
+      
+      <div class="max-w-4xl mx-auto bg-cream rounded-lg shadow-md p-8">
+        <form id="room-booking-form" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="check-in" class="block text-sm font-medium text-gray-dark mb-1">Check-in Date</label>
+              <input
+                type="date"
+                id="check-in"
+                name="check-in"
+                required
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              />
+            </div>
+            
+            <div>
+              <label for="check-out" class="block text-sm font-medium text-gray-dark mb-1">Check-out Date</label>
+              <input
+                type="date"
+                id="check-out"
+                name="check-out"
+                required
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              />
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="room-type" class="block text-sm font-medium text-gray-dark mb-1">Room Type</label>
+              <select 
+                id="room-type"
+                name="room-type"
+                required
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              >
+                <option value="">Select Room Type</option>
+                <option value="premium-king">Premium King Suite ($199/night)</option>
+                <option value="premium-double">Premium Double Suite ($229/night)</option>
+                <option value="deluxe-king">Deluxe King Room ($129/night)</option>
+                <option value="deluxe-twin">Deluxe Twin Room ($129/night)</option>
+                <option value="standard-king">Standard King Room ($89/night)</option>
+                <option value="standard-twin">Standard Twin Room ($89/night)</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="guests" class="block text-sm font-medium text-gray-dark mb-1">Number of Guests</label>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="adults" class="block text-xs font-medium text-gray mb-1">Adults</label>
+                  <select 
+                    id="adults"
+                    name="adults"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  >
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="children" class="block text-xs font-medium text-gray mb-1">Children</label>
+                  <select 
+                    id="children"
+                    name="children"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <label for="special-requests" class="block text-sm font-medium text-gray-dark mb-1">Special Requests</label>
+            <textarea
+              id="special-requests"
+              name="special-requests"
+              rows="3"
+              class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              placeholder="Any special requests or requirements?"
+            ></textarea>
+          </div>
+          
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-display text-lg text-secondary mb-4">Guest Information</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="first-name" class="block text-sm font-medium text-gray-dark mb-1">First Name</label>
+                <input
+                  type="text"
+                  id="first-name"
+                  name="first-name"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+              
+              <div>
+                <label for="last-name" class="block text-sm font-medium text-gray-dark mb-1">Last Name</label>
+                <input
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-dark mb-1">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+              
+              <div>
+                <label for="phone" class="block text-sm font-medium text-gray-dark mb-1">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div class="pt-4">
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary-dark text-white font-accent font-medium py-3 px-6 rounded transition-colors duration-300"
+            >
+              Book Now
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Banquet Booking Section -->
+  <section id="banquet" class="py-16 bg-white booking-section" style="display: none;">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Banquet Reservation"
+        subtitle="Book your event venue with us"
+      />
+      
+      <div class="max-w-4xl mx-auto bg-cream rounded-lg shadow-md p-8">
+        <form id="banquet-booking-form" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="event-date" class="block text-sm font-medium text-gray-dark mb-1">Event Date</label>
+              <input
+                type="date"
+                id="event-date"
+                name="event-date"
+                required
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              />
+            </div>
+            
+            <div>
+              <label for="event-time" class="block text-sm font-medium text-gray-dark mb-1">Event Time</label>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="start-time" class="block text-xs font-medium text-gray mb-1">Start Time</label>
+                  <input
+                    type="time"
+                    id="start-time"
+                    name="start-time"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label for="end-time" class="block text-xs font-medium text-gray mb-1">End Time</label>
+                  <input
+                    type="time"
+                    id="end-time"
+                    name="end-time"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="event-type" class="block text-sm font-medium text-gray-dark mb-1">Event Type</label>
+              <select 
+                id="event-type"
+                name="event-type"
+                required
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              >
+                <option value="">Select Event Type</option>
+                <option value="wedding">Wedding</option>
+                <option value="corporate">Corporate Event</option>
+                <option value="birthday">Birthday Party</option>
+                <option value="anniversary">Anniversary Celebration</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="guests-count" class="block text-sm font-medium text-gray-dark mb-1">Number of Guests</label>
+              <input
+                type="number"
+                id="guests-count"
+                name="guests-count"
+                min="10"
+                max="500"
+                required
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Approximate guest count"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <label for="venue" class="block text-sm font-medium text-gray-dark mb-1">Preferred Venue</label>
+            <select 
+              id="venue"
+              name="venue"
+              required
+              class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
+              <option value="">Select Venue</option>
+              <option value="grand-ballroom">Grand Ballroom (up to 500 guests)</option>
+              <option value="crystal-hall">Crystal Hall (up to 250 guests)</option>
+              <option value="garden-terrace">Garden Terrace (up to 150 guests)</option>
+              <option value="boardroom">Boardroom (up to 30 guests)</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="event-details" class="block text-sm font-medium text-gray-dark mb-1">Event Details</label>
+            <textarea
+              id="event-details"
+              name="event-details"
+              rows="3"
+              required
+              class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              placeholder="Please provide details about your event, including any special requirements or arrangements."
+            ></textarea>
+          </div>
+          
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-display text-lg text-secondary mb-4">Contact Information</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="contact-name" class="block text-sm font-medium text-gray-dark mb-1">Full Name</label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="contact-name"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+              
+              <div>
+                <label for="organization" class="block text-sm font-medium text-gray-dark mb-1">Organization (if applicable)</label>
+                <input
+                  type="text"
+                  id="organization"
+                  name="organization"
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+              <div>
+                <label for="contact-email" class="block text-sm font-medium text-gray-dark mb-1">Email Address</label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="contact-email"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+              
+              <div>
+                <label for="contact-phone" class="block text-sm font-medium text-gray-dark mb-1">Phone Number</label>
+                <input
+                  type="tel"
+                  id="contact-phone"
+                  name="contact-phone"
+                  required
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div class="pt-4">
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary-dark text-white font-accent font-medium py-3 px-6 rounded transition-colors duration-300"
+            >
+              Request Booking
+            </button>
+            <p class="text-sm text-gray mt-2 text-center">
+              Our team will contact you within 24 hours to confirm availability and discuss details.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Booking Policy Section -->
+  <section class="py-16 bg-cream">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Booking Policies"
+        subtitle="Important information about our booking and cancellation policies"
+      />
+      
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <h3 class="font-display text-xl text-secondary mb-4">Room Booking Policies</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Guaranteed reservations require a valid credit card.</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Check-in: 2:00 PM, Check-out: 12:00 PM.</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Free cancellation up to 48 hours before check-in.</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Cancellation within 48 hours: one night's charge.</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>No-show: full charge for the first night.</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Special requests are subject to availability.</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <h3 class="font-display text-xl text-secondary mb-4">Banquet Booking Policies</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>A 50% deposit is required to confirm banquet bookings.</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Final guest count must be confirmed 7 days prior to the event.</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Cancellation policy: 
+                <ul class="ml-7 mt-2 space-y-1">
+                  <li>90+ days: full refund of deposit</li>
+                  <li>60-89 days: 75% refund of deposit</li>
+                  <li>30-59 days: 50% refund of deposit</li>
+                  <li>Less than 30 days: no refund</li>
+                </ul>
+              </span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Outside vendors must be approved by management.</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Full payment is due 7 days before the event date.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Booking Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set minimum dates for date inputs to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('check-in').setAttribute('min', today);
+      document.getElementById('check-out').setAttribute('min', today);
+      document.getElementById('event-date').setAttribute('min', today);
+      
+      // Tab switching functionality
+      const tabs = document.querySelectorAll('#booking-tabs a');
+      const sections = document.querySelectorAll('.booking-section');
+      
+      // Check if URL has a hash and show the corresponding section
+      const showSection = (sectionId) => {
+        sections.forEach(section => {
+          section.style.display = 'none';
+        });
+        document.getElementById(sectionId).style.display = 'block';
+        
+        tabs.forEach(tab => {
+          if (tab.getAttribute('href') === `#${sectionId}`) {
+            tab.classList.add('text-primary', 'border-primary');
+          } else {
+            tab.classList.remove('text-primary', 'border-primary');
+          }
+        });
+      };
+      
+      // Handle hash change
+      const handleHashChange = () => {
+        const hash = window.location.hash.substring(1);
+        if (hash === 'banquet' || hash === 'rooms') {
+          showSection(hash);
+        } else {
+          showSection('rooms'); // Default
+        }
+      };
+      
+      // Initial load
+      handleHashChange();
+      
+      // Listen for hash changes
+      window.addEventListener('hashchange', handleHashChange);
+      
+      // Tab click events
+      tabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          const targetId = tab.getAttribute('href').substring(1);
+          showSection(targetId);
+        });
+      });
+      
+      // Form submission handling
+      const roomForm = document.getElementById('room-booking-form');
+      const banquetForm = document.getElementById('banquet-booking-form');
+      
+      roomForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your room booking request. Your booking confirmation will be sent to your email shortly.');
+        roomForm.reset();
+      });
+      
+      banquetForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your banquet booking request. Our team will contact you within 24 hours to discuss details and confirm availability.');
+        banquetForm.reset();
+      });
+    });
+  </script>
+</Layout>

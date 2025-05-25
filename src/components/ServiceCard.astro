@@ -1,0 +1,26 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  link: string;
+}
+
+const { title, description, icon, link } = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
+  <div class="p-8">
+    <div class="text-primary mb-6">
+      <Fragment set:html={icon} />
+    </div>
+    <h3 class="font-display text-xl text-secondary mb-3">{title}</h3>
+    <p class="text-gray mb-6">{description}</p>
+    <a href={link} class="font-accent text-primary hover:text-primary-dark inline-flex items-center transition-colors">
+      Learn More
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+</div>

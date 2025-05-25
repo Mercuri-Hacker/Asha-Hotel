@@ -1,0 +1,47 @@
+---
+import Button from './Button.astro';
+
+export interface Props {
+  name: string;
+  description: string;
+  price: string;
+  image: string;
+  features: string[];
+  link: string;
+}
+
+const { name, description, price, image, features, link } = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+  <div class="relative overflow-hidden group">
+    <img 
+      src={image} 
+      alt={name}
+      class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+    />
+    <div class="absolute top-4 right-4 bg-primary text-white font-accent font-medium text-sm py-1 px-3 rounded">
+      {price}
+    </div>
+  </div>
+  
+  <div class="p-6">
+    <h3 class="font-display text-xl text-secondary mb-2">{name}</h3>
+    <p class="text-gray mb-4">{description}</p>
+    
+    <ul class="space-y-2 mb-6">
+      {features.map((feature) => (
+        <li class="flex items-center text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          {feature}
+        </li>
+      ))}
+    </ul>
+    
+    <Button href={link} variant="primary" class="w-full text-center">
+      Book Now
+    </Button>
+  </div>
+</div>

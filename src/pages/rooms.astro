@@ -1,0 +1,426 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Button from '../components/Button.astro';
+
+// Room data
+const premiumRooms = [
+  {
+    name: "Premium King Suite",
+    description: "Experience luxury in our spacious Premium King Suite featuring elegant furnishings and modern amenities for a comfortable stay.",
+    price: "$199",
+    image: "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    size: "450 sq ft",
+    bed: "King-size bed",
+    occupancy: "2 Adults, 1 Child",
+    features: [
+      "Premium bedding and furniture",
+      "Modern bathroom with luxury amenities",
+      "Air conditioning and heating",
+      "Flat-screen TV with cable channels",
+      "Mini-refrigerator and coffee maker",
+      "High-speed Wi-Fi",
+      "24/7 room service",
+      "City/garden views"
+    ]
+  },
+  {
+    name: "Premium Double Suite",
+    description: "Perfect for families or groups, our Premium Double Suite offers ample space and comfort with two queen beds and premium amenities.",
+    price: "$229",
+    image: "https://images.pexels.com/photos/279746/pexels-photo-279746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    size: "500 sq ft",
+    bed: "Two Queen-size beds",
+    occupancy: "4 Adults",
+    features: [
+      "Premium bedding and furniture",
+      "Modern bathroom with luxury amenities",
+      "Air conditioning and heating",
+      "Flat-screen TV with cable channels",
+      "Mini-refrigerator and coffee maker",
+      "High-speed Wi-Fi",
+      "24/7 room service",
+      "City/garden views"
+    ]
+  }
+];
+
+const guestRooms = [
+  {
+    name: "Deluxe King Room",
+    description: "Well-appointed room with a king bed, offering comfort and convenience at competitive rates. Ideal for business travelers and couples.",
+    price: "$129",
+    image: "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    size: "350 sq ft",
+    bed: "King-size bed",
+    occupancy: "2 Adults",
+    features: [
+      "Comfortable bed with quality linens",
+      "Modern bathroom facilities",
+      "Air conditioning",
+      "Flat-screen TV",
+      "Work desk and chair",
+      "Wi-Fi access",
+      "Room service availability"
+    ]
+  },
+  {
+    name: "Deluxe Twin Room",
+    description: "Comfortable room with two twin beds, perfect for friends or colleagues traveling together with all essential amenities.",
+    price: "$129",
+    image: "https://images.pexels.com/photos/210265/pexels-photo-210265.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    size: "350 sq ft",
+    bed: "Two Twin beds",
+    occupancy: "2 Adults",
+    features: [
+      "Comfortable beds with quality linens",
+      "Modern bathroom facilities",
+      "Air conditioning",
+      "Flat-screen TV",
+      "Work desk and chair",
+      "Wi-Fi access",
+      "Room service availability"
+    ]
+  }
+];
+
+const standardRooms = [
+  {
+    name: "Standard King Room",
+    description: "Budget-friendly accommodation with a king bed, offering clean, comfortable lodging without compromising on essential amenities.",
+    price: "$89",
+    image: "https://images.pexels.com/photos/237371/pexels-photo-237371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    size: "300 sq ft",
+    bed: "King-size bed",
+    occupancy: "2 Adults",
+    features: [
+      "Clean and comfortable bedding",
+      "Basic bathroom amenities",
+      "Air conditioning",
+      "Television",
+      "Wi-Fi access",
+      "Daily housekeeping"
+    ]
+  },
+  {
+    name: "Standard Twin Room",
+    description: "Economical room with two twin beds, perfect for short stays and travelers on a budget while maintaining comfort and cleanliness.",
+    price: "$89",
+    image: "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    size: "300 sq ft",
+    bed: "Two Twin beds",
+    occupancy: "2 Adults",
+    features: [
+      "Clean and comfortable bedding",
+      "Basic bathroom amenities",
+      "Air conditioning",
+      "Television",
+      "Wi-Fi access",
+      "Daily housekeeping"
+    ]
+  }
+];
+
+// Amenities data
+const hotelAmenities = [
+  {
+    name: "24/7 Front Desk",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
+  },
+  {
+    name: "Complimentary Parking",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>`
+  },
+  {
+    name: "Restaurant & Room Service",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>`
+  },
+  {
+    name: "Laundry Services",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`
+  },
+  {
+    name: "Business Center",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`
+  },
+  {
+    name: "Airport/Railway Transfers",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>`
+  }
+];
+
+// Room rendering function
+const RoomCard = ({ room }) => {
+  return (
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="relative">
+        <img
+          src={room.image}
+          alt={room.name}
+          class="w-full h-64 object-cover"
+        />
+        <div class="absolute top-4 right-4 bg-primary text-white font-accent font-medium text-sm py-1 px-3 rounded">
+          From {room.price}/night
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <h3 class="font-display text-xl text-secondary mb-2">{room.name}</h3>
+        <p class="text-gray mb-4">{room.description}</p>
+        
+        <div class="flex flex-wrap gap-4 mb-4 text-sm">
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+            </svg>
+            <span>{room.size}</span>
+          </div>
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-1" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7z" />
+              <path fill-rule="evenodd" d="M4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" clip-rule="evenodd" />
+            </svg>
+            <span>{room.bed}</span>
+          </div>
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-1" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+            </svg>
+            <span>{room.occupancy}</span>
+          </div>
+        </div>
+        
+        <h4 class="font-accent font-medium text-secondary mb-2">Room Features:</h4>
+        <ul class="space-y-1 mb-6">
+          {room.features.map(feature => (
+            <li class="flex items-start text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+        
+        <Button href="/booking#rooms" variant="primary" class="w-full text-center">
+          Book Now
+        </Button>
+      </div>
+    </div>
+  );
+};
+---
+
+<Layout 
+  title="Accommodation" 
+  description="Comfortable hotel rooms in premium, guest, and standard categories. Modern amenities and exceptional service for a perfect stay."
+>
+  <!-- Hero Section -->
+  <Hero
+    title="Comfortable Accommodation"
+    subtitle="Premium, guest, and standard rooms for a relaxing and enjoyable stay"
+    image="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    height="h-[60vh] min-h-[400px]"
+    buttons={[
+      {
+        text: "Book a Room",
+        href: "/booking#rooms",
+        variant: "primary"
+      }
+    ]}
+  />
+  
+  <!-- Premium Rooms Section -->
+  <section id="premium" class="py-20 bg-cream">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Premium Rooms"
+        subtitle="Experience luxury and comfort in our premium rooms featuring modern amenities and elegant furnishings"
+      />
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {premiumRooms.map(room => (
+          <RoomCard room={room} />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Guest Rooms Section -->
+  <section id="guest" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Guest Rooms"
+        subtitle="Well-appointed guest rooms offering comfort and convenience at competitive rates"
+      />
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {guestRooms.map(room => (
+          <RoomCard room={room} />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Standard Rooms Section -->
+  <section id="standard" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Standard Rooms"
+        subtitle="Budget-friendly accommodation without compromising on cleanliness and basic amenities"
+      />
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {standardRooms.map(room => (
+          <RoomCard room={room} />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Hotel Amenities Section -->
+  <section class="py-20 bg-cream">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Hotel Amenities"
+        subtitle="Enjoy a range of services and facilities during your stay"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {hotelAmenities.map(amenity => (
+          <div class="bg-white rounded-lg p-6 shadow-md flex items-center">
+            <div class="text-primary mr-4" set:html={amenity.icon} />
+            <h3 class="font-display text-lg text-secondary">{amenity.name}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Booking Policy Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Booking Information"
+        subtitle="Important details about our booking and cancellation policies"
+      />
+      
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="font-display text-xl text-secondary mb-4">Check-in & Check-out</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+              </svg>
+              <span>Check-in: 2:00 PM</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+              </svg>
+              <span>Check-out: 12:00 PM</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+              <span>Early check-in and late check-out available upon request (subject to availability and additional charges)</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="font-display text-xl text-secondary mb-4">Cancellation Policy</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Free cancellation up to 48 hours before check-in</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>Cancellation within 48 hours of check-in: one night's charge</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              <span>No-show: full charge for the first night</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="font-display text-xl text-secondary mb-4">Payment Information</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+              </svg>
+              <span>We accept all major credit cards</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+              </svg>
+              <span>A valid credit card is required at check-in for incidentals</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+              </svg>
+              <span>Room rates are subject to applicable taxes</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="font-display text-xl text-secondary mb-4">Additional Information</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd" />
+              </svg>
+              <span>Pet-friendly rooms available (additional charges apply)</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd" />
+              </svg>
+              <span>All rooms are non-smoking (designated smoking areas available)</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd" />
+              </svg>
+              <span>Special requests are subject to availability and cannot be guaranteed</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-20 bg-secondary">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-display text-3xl md:text-4xl text-white mb-6">Ready to Book Your Stay?</h2>
+      <p class="text-white text-lg max-w-3xl mx-auto mb-10">
+        Enjoy comfortable accommodation with exceptional service and amenities.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/booking#rooms" variant="primary" size="lg">
+          Book a Room
+        </Button>
+        <Button href="/contact" variant="outline" size="lg">
+          Contact Us
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,86 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+
+<header class="fixed w-full z-50 transition-all duration-300" id="header">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center">
+        <span class="font-display text-2xl font-bold text-secondary">Asha<span class="text-primary">BanquetHotel</span></span>
+      </a>
+      
+      <!-- Navigation - Desktop -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === '' ? 'text-primary' : 'text-secondary'}`}>Home</a>
+        <a href="/about" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'about' ? 'text-primary' : 'text-secondary'}`}>About</a>
+        <a href="/banquet" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'banquet' ? 'text-primary' : 'text-secondary'}`}>Banquet</a>
+        <a href="/rooms" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'rooms' ? 'text-primary' : 'text-secondary'}`}>Rooms</a>
+        <a href="/gallery" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'gallery' ? 'text-primary' : 'text-secondary'}`}>Gallery</a>
+        <a href="/contact" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'contact' ? 'text-primary' : 'text-secondary'}`}>Contact</a>
+      </nav>
+      
+      <!-- Book Now Button -->
+      <a href="/booking" class="hidden md:block bg-primary hover:bg-primary-dark text-white font-accent font-medium text-sm py-2 px-6 rounded transition-colors duration-300">
+        Book Now
+      </a>
+      
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-secondary focus:outline-none" id="menu-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div class="md:hidden bg-white shadow-lg absolute w-full left-0 top-full transform -translate-y-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+    <div class="container mx-auto px-4 py-4">
+      <nav class="flex flex-col space-y-4">
+        <a href="/" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === '' ? 'text-primary' : 'text-secondary'}`}>Home</a>
+        <a href="/about" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'about' ? 'text-primary' : 'text-secondary'}`}>About</a>
+        <a href="/banquet" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'banquet' ? 'text-primary' : 'text-secondary'}`}>Banquet</a>
+        <a href="/rooms" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'rooms' ? 'text-primary' : 'text-secondary'}`}>Rooms</a>
+        <a href="/gallery" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'gallery' ? 'text-primary' : 'text-secondary'}`}>Gallery</a>
+        <a href="/contact" class={`font-accent text-sm font-medium transition-colors hover:text-primary ${currentPath === 'contact' ? 'text-primary' : 'text-secondary'}`}>Contact</a>
+        <a href="/booking" class="bg-primary hover:bg-primary-dark text-white font-accent font-medium text-center text-sm py-2 px-6 rounded transition-colors duration-300">
+          Book Now
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Scroll behavior for header
+  const header = document.getElementById('header');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  // Add background color on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header.classList.add('bg-white', 'shadow-md');
+    } else {
+      header.classList.remove('bg-white', 'shadow-md');
+    }
+  });
+  
+  // Initial check for scroll position
+  if (window.scrollY > 10) {
+    header.classList.add('bg-white', 'shadow-md');
+  }
+  
+  // Mobile menu toggle
+  menuToggle.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('-translate-y-full')) {
+      mobileMenu.classList.remove('-translate-y-full');
+      mobileMenu.classList.add('translate-y-0');
+    } else {
+      mobileMenu.classList.remove('translate-y-0');
+      mobileMenu.classList.add('-translate-y-full');
+    }
+  });
+</script>

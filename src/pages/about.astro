@@ -1,0 +1,239 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Button from '../components/Button.astro';
+
+// Team members data
+const teamMembers = [
+  {
+    name: "Sarah Johnson",
+    position: "General Manager",
+    image: "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "With over 15 years of experience in luxury hospitality, Sarah ensures every aspect of AshaBanquetHotel meets the highest standards of excellence."
+  },
+  {
+    name: "Michael Chen",
+    position: "Executive Chef",
+    image: "https://images.pexels.com/photos/3814446/pexels-photo-3814446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "Chef Michael brings his international culinary expertise to create exquisite menus that blend traditional flavors with modern techniques."
+  },
+  {
+    name: "Emily Rodriguez",
+    position: "Events Director",
+    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "Emily's attention to detail and creative vision help transform every event into a unique and memorable experience for our guests."
+  },
+  {
+    name: "David Wilson",
+    position: "Accommodations Manager",
+    image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "David ensures all our accommodation services meet the highest standards of comfort and luxury for a perfect stay."
+  }
+];
+
+// Values data
+const values = [
+  {
+    title: "Excellence",
+    description: "We strive for excellence in every aspect of our service, from the quality of our food to the comfort of our accommodations.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+    </svg>`
+  },
+  {
+    title: "Personalization",
+    description: "We believe that every event is unique, and we customize our services to meet the specific needs and preferences of our clients.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>`
+  },
+  {
+    title: "Integrity",
+    description: "We conduct our business with honesty and transparency, building trust with our clients and community through ethical practices.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+    </svg>`
+  },
+  {
+    title: "Innovation",
+    description: "We continuously seek innovative ways to enhance our services and create exceptional experiences for our guests.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+    </svg>`
+  }
+];
+---
+
+<Layout 
+  title="About Us" 
+  description="Learn about AshaBanquetHotel, your trusted event and hospitality partner providing world-class banquet services and comfortable accommodation."
+>
+  <!-- Hero Section -->
+  <Hero
+    title="About AshaBanquetHotel"
+    subtitle="Your Trusted Event & Hospitality Partner"
+    image="https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    height="h-[60vh] min-h-[400px]"
+  />
+  
+  <!-- Our Story Section -->
+  <section class="py-20 bg-cream">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <h2 class="font-display text-3xl md:text-4xl text-secondary mb-6">Our Story</h2>
+          <p class="text-gray mb-6 leading-relaxed">
+            AshaBanquetHotel was established with a vision to provide world-class banquet services and comfortable accommodation for all occasions. For over a decade, we have been the preferred choice for families and businesses seeking memorable experiences.
+          </p>
+          <p class="text-gray mb-6 leading-relaxed">
+            What began as a small family-owned venue has grown into a premier destination for weddings, corporate events, and special celebrations. Our journey has been guided by a commitment to excellence, personalized service, and creating spaces where memories are made.
+          </p>
+          <p class="text-gray mb-8 leading-relaxed">
+            Today, we continue to evolve and enhance our offerings while maintaining the warm, personalized service that has become our trademark. Our dedicated team works tirelessly to ensure every event and stay exceeds expectations.
+          </p>
+        </div>
+        
+        <div class="relative order-1 lg:order-2">
+          <div class="absolute -top-4 -left-4 w-64 h-64 bg-primary opacity-10 rounded-lg"></div>
+          <img
+            src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="AshaBanquetHotel Building"
+            class="w-full h-auto object-cover rounded-lg shadow-lg relative z-10"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Our Mission Section -->
+  <section class="py-20 bg-secondary text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-display text-3xl md:text-4xl mb-8">Our Mission</h2>
+      <p class="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
+        "To create extraordinary experiences through impeccable service, luxurious amenities, and attention to detail that exceeds expectations."
+      </p>
+    </div>
+  </section>
+  
+  <!-- Our Values Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Our Values"
+        subtitle="The principles that guide our service and operations"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {values.map(value => (
+          <div class="bg-cream rounded-lg p-8 text-center shadow-md">
+            <div class="flex justify-center text-primary mb-6">
+              <Fragment set:html={value.icon} />
+            </div>
+            <h3 class="font-display text-xl text-secondary mb-3">{value.title}</h3>
+            <p class="text-gray">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Why Choose Us Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Why Choose AshaBanquetHotel"
+        subtitle="What sets us apart from the rest"
+      />
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <img
+            src="https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Modern Facilities"
+            class="w-full h-64 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="font-display text-xl text-secondary mb-3">Modern Facilities</h3>
+            <p class="text-gray">
+              Our state-of-the-art banquet halls feature elegant décor, advanced lighting systems, and professional sound equipment to create the perfect ambiance for any event.
+            </p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <img
+            src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Experienced Team"
+            class="w-full h-64 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="font-display text-xl text-secondary mb-3">Experienced Team</h3>
+            <p class="text-gray">
+              Our dedicated staff brings years of expertise in event planning, hospitality, and customer service to ensure every detail is perfect and every need is anticipated.
+            </p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <img
+            src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Customizable Packages"
+            class="w-full h-64 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="font-display text-xl text-secondary mb-3">Customizable Packages</h3>
+            <p class="text-gray">
+              We offer flexible packages that can be tailored to your specific requirements and budget, ensuring you get exactly what you need for your event or stay.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Our Team Section -->
+  <section class="py-20 bg-cream">
+    <div class="container mx-auto px-4">
+      <SectionHeading
+        title="Meet Our Team"
+        subtitle="The dedicated professionals behind our exceptional service"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {teamMembers.map(member => (
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img
+              src={member.image}
+              alt={member.name}
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="font-display text-xl text-secondary mb-1">{member.name}</h3>
+              <p class="text-primary font-accent text-sm font-medium mb-3">{member.position}</p>
+              <p class="text-gray text-sm">{member.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="font-display text-3xl md:text-4xl text-secondary mb-6">Ready to Experience Our Hospitality?</h2>
+      <p class="text-gray text-lg max-w-3xl mx-auto mb-10">
+        Discover the AshaBanquetHotel difference for yourself. Contact us today to discuss your event or book your stay.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/contact" variant="primary" size="lg">
+          Contact Us
+        </Button>
+        <Button href="/booking" variant="secondary" size="lg">
+          Book Now
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>
